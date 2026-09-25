@@ -5,17 +5,15 @@ public class Usuario {
     private String nombre;
     private String correo;
     private String telefono;
-    private String tipo;
     
     public Usuario() {
     }
 
-    public Usuario(int id, String nombre, String correo, String telefono, String tipo) {
+    public Usuario(int id, String nombre, String correo, String telefono) {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
         this.telefono = telefono;
-        this.tipo = tipo;
     }
 
     public int getId() {
@@ -49,14 +47,9 @@ public class Usuario {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
+    
+    
+    
 
     
 }
