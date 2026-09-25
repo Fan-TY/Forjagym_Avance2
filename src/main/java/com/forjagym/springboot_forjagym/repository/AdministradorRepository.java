@@ -1,4 +1,4 @@
 package com.forjagym.springboot_forjagym.repository;
 
-public class AdministradorRepositoryMemoria {
+public class AdministradorRepository {
 }

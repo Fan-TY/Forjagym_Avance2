@@ -1,4 +1,5 @@
 package com.forjagym.springboot_forjagym.model;
+import java.util.List;
 
 public class Administrador extends User {
     private String nombre;
