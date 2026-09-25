@@ -8,9 +8,9 @@ public class HorarioAdmin {
     private LocalTime horarioInicio;
     private LocalTime HoraFin;
 
-    public HorarioAdmin(LocalTime horarioInicio, DayOfWeek dia, LocalTime horaFin) {
-        this.horarioInicio = horarioInicio;
+    public HorarioAdmin(DayOfWeek dia, LocalTime horarioInicio, LocalTime horaFin) {
         this.dia = dia;
+        this.horarioInicio = horarioInicio;
         HoraFin = horaFin;
     }
 
