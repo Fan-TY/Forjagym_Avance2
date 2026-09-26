@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 public class Boleta {
     private String numBoleta;
     private Compra compra;
-    private Cliente cliente;
     private double igv;
     private double subtotal;
     private double total;
@@ -16,10 +15,9 @@ public class Boleta {
     private LocalDateTime fechaEmision;
 
 
-    public Boleta(String numBoleta, Compra compra, Cliente cliente, double igv, double total, double subtotal, Visibilidad visibilidad, LocalDateTime fechaEmision) {
+    public Boleta(String numBoleta, Compra compra,  double igv, double total, double subtotal, Visibilidad visibilidad, LocalDateTime fechaEmision) {
         this.numBoleta = numBoleta;
         this.compra = compra;
-        this.cliente = cliente;
         this.total = total;
         this.subtotal = subtotal;
         this.visibilidad = visibilidad;
@@ -39,9 +37,6 @@ public class Boleta {
         return subtotal;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
 
     public double getTotal() {
         return total;
