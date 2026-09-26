@@ -6,7 +6,7 @@ import com.forjagym.springboot_forjagym.model.USUARIOS.Cliente;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class suscripcionCliente {
+public class SuscripcionCliente {
     private String idSusCli;
     private Cliente cliente;
     private Suscripcion suscripcion;
@@ -16,7 +16,7 @@ public class suscripcionCliente {
     private LocalDateTime fechaCreacion;
     private LocalDateTime fechaActualizacion;
 
-    public suscripcionCliente(String idSusCli, Cliente cliente, Suscripcion suscripcion, EstadoSusCliente estadosuscliente, LocalDate fehcaInicio, LocalDate fechaFin, LocalDateTime fechaCreacion, LocalDateTime fechaActualizacion) {
+    public SuscripcionCliente(String idSusCli, Cliente cliente, Suscripcion suscripcion, EstadoSusCliente estadosuscliente, LocalDate fehcaInicio, LocalDateTime fechaCreacion, LocalDateTime fechaActualizacion) {
         this.idSusCli = idSusCli;
         this.cliente = cliente;
         this.suscripcion = suscripcion;

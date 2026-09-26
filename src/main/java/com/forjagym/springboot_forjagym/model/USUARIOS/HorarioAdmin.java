@@ -6,12 +6,12 @@ import java.time.LocalTime;
 public class HorarioAdmin {
     private DayOfWeek dia;
     private LocalTime horarioInicio;
-    private LocalTime HoraFin;
+    private LocalTime horaFin;
 
     public HorarioAdmin(DayOfWeek dia, LocalTime horarioInicio, LocalTime horaFin) {
         this.dia = dia;
         this.horarioInicio = horarioInicio;
-        HoraFin = horaFin;
+        this.horaFin = horaFin;
     }
 
     public DayOfWeek getDia() {
@@ -23,6 +23,6 @@ public class HorarioAdmin {
     }
 
     public LocalTime getHoraFin() {
-        return HoraFin;
+        return horaFin;
     }
 }

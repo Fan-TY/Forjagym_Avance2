@@ -11,11 +11,11 @@ public class Sede {
         this.direccion = direccion;
     }
 
-    public String getId_Sede() {
+    public String getIdSede() {
         return idSede;
     }
 
-    public String getNombre_Sede() {
+    public String getNombreSede() {
         return nombreSede;
     }
 

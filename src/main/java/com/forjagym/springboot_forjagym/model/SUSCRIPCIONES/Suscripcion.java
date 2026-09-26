@@ -4,7 +4,7 @@ import java.util.List;
 
 public abstract class Suscripcion {
 
-    private int id;
+    private String id;
     private String nombre;
     private double precio;
     private int duracion;
@@ -14,7 +14,7 @@ public abstract class Suscripcion {
     public Suscripcion() {
     }
 
-    public Suscripcion(int id, String nombre, double precio, int duracion,
+    public Suscripcion(String id, String nombre, double precio, int duracion,
                        EstadoSuscripcion estado, List<Beneficio> beneficios) {
         this.id = id;
         this.nombre = nombre;
@@ -24,11 +24,11 @@ public abstract class Suscripcion {
         this.beneficios = beneficios;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

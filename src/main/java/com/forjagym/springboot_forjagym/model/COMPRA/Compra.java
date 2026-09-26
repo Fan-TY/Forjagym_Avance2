@@ -1,20 +1,19 @@
 package com.forjagym.springboot_forjagym.model.COMPRA;
 
-import com.forjagym.springboot_forjagym.model.SUSCRIPCIONES.Suscripcion;
 import com.forjagym.springboot_forjagym.model.USUARIOS.Cliente;
 
 import java.util.List;
 
-public class compra {
+public class Compra {
     private String idCompra;
-    private List<suscripcionCliente> articulos;
+    private List<SuscripcionCliente> articulos;
     private Tarjeta tarjeta;
     private Cliente cliente;
     private double total;
     private EstadoPago estadopago;
-    private String motivoRechazo = null;
+    private String motivoRechazo;
 
-    public compra(String idCompra, List<suscripcionCliente> articulos, Tarjeta tarjeta, Cliente cliente, double total, EstadoPago estadopago, String motivoRechazo) {
+    public Compra(String idCompra, List<SuscripcionCliente> articulos, Tarjeta tarjeta, Cliente cliente, double total, EstadoPago estadopago, String motivoRechazo) {
         this.idCompra = idCompra;
         this.articulos = articulos;
         this.tarjeta = tarjeta;
@@ -32,11 +31,11 @@ public class compra {
         this.idCompra = idCompra;
     }
 
-    public List<suscripcionCliente> getArticulos() {
+    public List<SuscripcionCliente> getArticulos() {
         return articulos;
     }
 
-    public void setArticulos(List<suscripcionCliente> articulos) {
+    public void setArticulos(List<SuscripcionCliente> articulos) {
         this.articulos = articulos;
     }
 
