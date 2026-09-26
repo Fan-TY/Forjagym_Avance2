@@ -1,6 +1,6 @@
 package com.forjagym.springboot_forjagym.repository.memoria;
 
-import com.forjagym.springboot_forjagym.model.HorarioAdmin;
+import com.forjagym.springboot_forjagym.model.USUARIOS.HorarioAdmin;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;

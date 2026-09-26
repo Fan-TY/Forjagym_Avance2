@@ -1,7 +1,9 @@
-package com.forjagym.springboot_forjagym.model;
+package com.forjagym.springboot_forjagym.model.USUARIOS;
+
 import java.util.List;
 
 public class Administrador extends User {
+    private String idAdmin;
     private String nombre;
     private String apellido;
     private String cod;
@@ -14,7 +16,7 @@ public class Administrador extends User {
     private String area;
     private List<HorarioAdmin>horarioChamba;
 
-    public Administrador(String password, String nombre, String apellido, String cod, String email, String tel, String cargo, TipoDocumento tipoDoc, String numDoc, Sede sede, String area, List<HorarioAdmin> horarioChamba) {
+    public Administrador(String password, String nombre, String apellido, String cod, String email, String tel, String cargo, TipoDocumento tipoDoc, String numDoc, Sede sede, String area, List<HorarioAdmin> horarioChamba, String idAdmin) {
         super(password);
         this.nombre = nombre;
         this.apellido = apellido;
@@ -27,11 +29,16 @@ public class Administrador extends User {
         this.sede = sede;
         this.area = area;
         this.horarioChamba = horarioChamba;
+        this.idAdmin = idAdmin;
     }
 
     @Override
     public boolean validarCredenciales(String identificador, String password) {
         return this.email.equals(identificador) && autenticacionPass(password);
+    }
+
+    public String getIdAdmin() {
+        return idAdmin;
     }
 
     public String getNombre() {

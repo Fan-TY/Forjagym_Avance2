@@ -1,4 +1,4 @@
-package com.forjagym.springboot_forjagym.model;
+package com.forjagym.springboot_forjagym.model.USUARIOS;
 
 public class Sede {
     private String idSede;

@@ -1,4 +1,4 @@
-package com.forjagym.springboot_forjagym.model;
+package com.forjagym.springboot_forjagym.model.USUARIOS;
 
 import java.time.LocalDate;
 
@@ -12,8 +12,9 @@ public class Cliente extends User {
     private TipoDocumento tipoDocumento;
     private String numDocumento;
     private LocalDate fechaNacimiento;
+    private String idCliente;
 
-    public Cliente(String password, String nombre, String apellidos, String email, String telefono, String contactoEmergencia, TipoDocumento tipoDocumento, Sede sede, String numDocumento, LocalDate fechaNacimiento) {
+    public Cliente(String password, String nombre, String apellidos, String email, String telefono, String contactoEmergencia, TipoDocumento tipoDocumento, Sede sede, String numDocumento, LocalDate fechaNacimiento, String idCliente) {
         super(password);
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -24,6 +25,7 @@ public class Cliente extends User {
         this.numDocumento = numDocumento;
         this.fechaNacimiento = fechaNacimiento;
         this.email = email;
+        this.idCliente = idCliente;
     }
 
     @Override
@@ -90,4 +92,7 @@ public class Cliente extends User {
         return fechaNacimiento;
     }
 
+    public String getIdCliente() {
+        return idCliente;
+    }
 }

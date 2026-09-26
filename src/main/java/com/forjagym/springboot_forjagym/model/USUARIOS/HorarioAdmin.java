@@ -1,4 +1,4 @@
-package com.forjagym.springboot_forjagym.model;
+package com.forjagym.springboot_forjagym.model.USUARIOS;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;

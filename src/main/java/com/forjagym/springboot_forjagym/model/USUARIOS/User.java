@@ -1,4 +1,4 @@
-package com.forjagym.springboot_forjagym.model;
+package com.forjagym.springboot_forjagym.model.USUARIOS;
 
 public abstract class User implements Autenticacion {
     protected String password;
