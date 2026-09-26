@@ -1,62 +1,77 @@
 package com.forjagym.springboot_forjagym.model;
 
+import java.time.LocalDate;
+
 public class Notificacion {
-    private int id;
-    private int usuarioId;
-    private String mensaje;
-    private String fecha;
-    private String estado;
+    private String idNoti;
+    private String titulo;
+    private TipoNotificacion tiponoti;
+    private TipoPublico tipopublico;
+    private EstadoNotificacion estadonoti;
+    private String Descripcion;
+    private LocalDate fecha_envio;
 
-    public Notificacion() {
+
+    public Notificacion(String idNoti, String titulo, TipoNotificacion tiponoti, TipoPublico tipopublico, EstadoNotificacion estadonoti, String descripcion, LocalDate fecha_envio) {
+        this.idNoti = idNoti;
+        this.titulo = titulo;
+        this.tiponoti = tiponoti;
+        this.tipopublico = tipopublico;
+        this.estadonoti = estadonoti;
+        this.Descripcion = descripcion;
+        this.fecha_envio = fecha_envio;
+
     }
 
-    public Notificacion(int id, int usuarioId, String mensaje, String fecha, String estado) {
-        this.id = id;
-        this.usuarioId = usuarioId;
-        this.mensaje = mensaje;
-        this.fecha = fecha;
-        this.estado = estado;
+    public String getIdNoti() {
+        return idNoti;
     }
 
-    public int getId() {
-        return id;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public int getUsuarioId() {
-        return usuarioId;
+    public TipoNotificacion getTiponoti() {
+        return tiponoti;
     }
 
-    public void setUsuarioId(int usuarioId) {
-        this.usuarioId = usuarioId;
+    public void setTiponoti(TipoNotificacion tiponoti) {
+        this.tiponoti = tiponoti;
     }
 
-    public String getMensaje() {
-        return mensaje;
+    public TipoPublico getTipopublico() {
+        return tipopublico;
     }
 
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
+    public void setTipopublico(TipoPublico tipopublico) {
+        this.tipopublico = tipopublico;
     }
 
-    public String getFecha() {
-        return fecha;
+    public EstadoNotificacion getEstadonoti() {
+        return estadonoti;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public void setEstadonoti(EstadoNotificacion estadonoti) {
+        this.estadonoti = estadonoti;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getDescripcion() {
+        return Descripcion;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setDescripcion(String descripcion) {
+        Descripcion = descripcion;
     }
-    
-    
+
+    public LocalDate getFecha_envio() {
+        return fecha_envio;
+    }
+
+    public void setFecha_envio(LocalDate fecha_envio) {
+        this.fecha_envio = fecha_envio;
+    }
 }
