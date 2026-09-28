@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Fragmentos Cliente</title>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER CLIENTE
+========================= -->
+<header th:fragment="header">
+
+    <div class="bg-body shadow-sm">
+
+        <nav class="navbar navbar-expand-lg container">
+
+            <!-- LOGO -->
+            <a th:href="@{/client/inicio}"
+               class="d-flex align-items-center text-decoration-none marca-navbar">
+
+                <i class="bi bi-fire fs-3 me-2"></i>
+
+                <span class="fw-bold fs-5">
+                    FORJAGYM
+                </span>
+
+            </a>
+
+
+            <div class="collapse navbar-collapse ms-2 py-1">
+
+                <ul class="navbar-nav gap-5 fw-bold ms-auto">
+
+                    <!-- INICIO -->
+                    <li class="nav-item">
+                        <a th:href="@{/client/inicio}"
+                           class="nav-link">
+                            Inicio
+                        </a>
+                    </li>
+
+
+                    <!-- CONTACTO -->
+                    <li class="nav-item">
+                        <a th:href="@{/client/contacto}"
+                           class="nav-link">
+                            Contacto
+                        </a>
+                    </li>
+
+
+                    <!-- SUSCRIPCIONES -->
+                    <li class="nav-item dropdown">
+
+                        <a href="#"
+                           class="nav-link dropdown-toggle"
+                           role="button"
+                           data-bs-toggle="dropdown"
+                           id="promociones_ref"
+                           aria-expanded="false">
+
+                            Suscripciones
+
+                        </a>
+
+                        <ul class="dropdown-menu"
+                            aria-labelledby="promociones_ref">
+
+                            <!-- PLANES -->
+                            <li>
+                                <a th:href="@{/client/planes}"
+                                   class="dropdown-item">
+                                    Planes
+                                </a>
+                            </li>
+
+                            <!-- PRODUCTOS -->
+                            <li>
+                                <a th:href="@{/client/membresiasproductos}"
+                                   class="dropdown-item">
+                                    Productos
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+
+                    <!-- NOTIFICACIONES -->
+                    <li class="nav-item">
+
+                        <a th:href="@{/client/notificaciones}"
+                           class="nav-link">
+
+                            Notificaciones
+
+                        </a>
+
+                    </li>
+
+
+                    <!-- CARRITO -->
+                    <li class="nav-item">
+
+                        <a th:href="@{/client/pedido}"
+                           class="nav-link">
+
+                            Carrito
+
+                        </a>
+
+                    </li>
+
+
+                    <!-- USUARIO -->
+                    <li class="nav-item dropdown">
+
+                        <a href="#"
+                           class="nav-link dropdown-toggle"
+                           role="button"
+                           data-bs-toggle="dropdown"
+                           id="usuario_ref"
+                           aria-expanded="false">
+
+                            Usuario
+
+                        </a>
+
+                        <ul class="dropdown-menu"
+                            aria-labelledby="usuario_ref">
+
+                            <!-- PERFIL -->
+                            <li>
+                                <a th:href="@{/client/perfil}" class="dropdown-item">
+                                    Ver perfil
+                                </a>
+                            </li>
+
+                            <!-- HISTORIAL -->
+                            <li>
+                                <a th:href="@{/client/historialcomprobantes}"
+                                   class="dropdown-item">
+                                    Ver historial
+                                </a>
+                            </li>
+
+                            <!-- CERRAR SESIÓN -->
+                            <li>
+                                <a th:href="@{/client/logout}"
+                                   class="dropdown-item">
+                                    Cerrar sesión
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     FOOTER CLIENTE
+========================= -->
+<footer class="footer pt-5 pb-3"
+        th:fragment="footer">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <!-- INFORMACIÓN -->
+            <div class="col-lg-4 col-md-6">
+
+                <div class="d-flex align-items-center mb-3 marca-navbar">
+
+                    <i class="bi bi-fire fs-3 me-2"></i>
+
+                    <span class="footer-texto fw-bold fs-4">
+                        FORJAGYM
+                    </span>
+
+                </div>
+
+                <p class="footer-texto mb-4">
+                    Forja tu cuerpo y tu mente con entrenadores especializados,
+                    planes personalizados y resultados medibles.
+                    Tu mejor versión empieza aquí.
+                </p>
+
+                <div class="d-flex gap-3">
+
+                    <a href="https://www.instagram.com"
+                       class="fs-5">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+
+                    <a href="https://www.facebook.com"
+                       class="fs-5">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+
+                    <a href="https://www.whatsapp.com"
+                       class="fs-5">
+                        <i class="bi bi-whatsapp"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- ENLACES -->
+            <div class="col-lg-3 col-md-6">
+
+                <h5 class="fw-bold mb-3">
+                    Enlaces
+                </h5>
+
+                <ul class="list-unstyled">
+
+                    <li class="mb-2">
+                        <a th:href="@{/client/inicio}">
+                            Inicio
+                        </a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a th:href="@{/client/contacto}">
+                            Contacto
+                        </a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a th:href="@{/client/planes}">
+                            Planes
+                        </a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a th:href="@{/client/membresiasproductos}">
+                            Productos
+                        </a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a th:href="@{/client/notificaciones}">
+                            Notificaciones
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- CONTACTO -->
+            <div class="col-lg-4 col-md-6">
+
+                <h5 class="fw-bold mb-3">
+                    Contacto
+                </h5>
+
+                <p class="footer-texto mb-2">
+                    <i class="bi bi-geo-alt footer-icono me-2"></i>
+                    Tupac Amaru 100 - Perú
+                </p>
+
+                <p class="footer-texto mb-2">
+                    <i class="bi bi-envelope footer-icono me-2"></i>
+                    ForjaGYM.pe@gmail.com
+                </p>
+
+                <p class="footer-texto mb-0">
+                    <i class="bi bi-telephone footer-icono me-2"></i>
+                    +51 977 450 891
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <hr class="my-4">
+
+
+        <!-- COPYRIGHT -->
+        <div class="row align-items-center">
+
+            <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+
+                <p class="mb-0 footer-texto small">
+                    &copy; 2026 FORJAGYM.
+                    Todos los derechos reservados.
+                </p>
+
+            </div>
+
+            <div class="col-md-6 text-center text-md-end">
+
+                <a href="#" class="small me-3">
+                    Términos
+                </a>
+
+                <a href="#" class="small me-3">
+                    Privacidad
+                </a>
+
+                <a href="#" class="small">
+                    Cookies
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+
+    <header class="sticky-top">
+        <div class=" bg-body shadow-sm">
+            <div th:replace="~{fragments/fragment_navbar :: navbar}"></div>
+        </div>
+    </header>
+
+    <main>
+        <!-- PAGINA 1 -->
+        <div class="">
+            <div class="container d-flex flex-column justify-content-start flex-grow-1 min-vh-100 mt-5">
+                    
+                    <form action="" class="row g-3 align-items-center">
+                        <div class="col-5">
+                            <p class="mb-0 fs-2 text-danger fw-bold">HISTORIAL DE SUSCRIPCIONES</p>
+                        </div>
+
+                        <div class="col-3">
+                            <select name="filtro" id="filtro" class="form-select">
+                                <option value="">Clientes actuales</option>
+                                <option value="">Retirados</option>
+                                <option value="">Todo</option>
+                            </select>
+                        </div>
+
+                        <div class="col-4">
+                            <select name="plan" id="plan" class="form-select">
+                                <option value="">Fuerza Total</option>
+                                <option value="">Funcional Grupal</option>
+                                <option value="">Plan Básico</option>
+                            </select>
+                        </div>
+                    </form>
+
+                <p class="text-secondary fs-5">Consulta las sucripciones de los clientes</p>
+
+
+            <div class="card border-0 shadow-sm ">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Plan</th>
+                                <th>Fecha inicio</th>
+                                <th>Vencimiento</th>
+                                <th>Monto pagado</th>
+                                <th>Último pago</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Carla Vega Rojas</td>
+                                <td>Fuerza Total</td>
+                                <td>12/07/2026</td>
+                                <td>12/09/2026</td>
+                                <td>S/180</td>
+                                <td>12/08/2026</td>
+                                <td><span class="badge bg-success">Activo</span></td>
+                            </tr>
+                            <tr>
+                                <td>Javier Morales</td>
+                                <td>Funcional Grupal</td>
+                                <td>02/07/2026</td>
+                                <td>02/09/2026</td>
+                                <td>S/120</td>
+                                <td>02/08/2026</td>
+                                <td><span class="badge bg-success">Activo</span></td>
+                            </tr>
+                            <tr>
+                                <td>María López</td>
+                                <td>Fuerza Total</td>
+                                <td>10/03/2026</td>
+                                <td>10/11/2026</td>
+                                <td>S/180</td>
+                                <td>10/08/2026</td>
+                                <td><span class="badge bg-success">Activo</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+
+    <div th:replace="~{fragments/fragment_footer :: footer}"></div>
+    
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

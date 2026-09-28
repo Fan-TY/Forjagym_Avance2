@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <link rel="shortcut icon" th:href="@{/img/favicon.png}" type="image/x-icon">
+
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+
+    <title>FORJAGYM - Historial de pagos</title>
+
+</head>
+
+
+<body>
+
+<!-- NAVBAR -->
+
+<div th:replace="~{fragments_cliente :: header}"></div>
+
+
+<main>
+
+    <div class="container d-flex justify-content-center flex-grow-1 min-vh-100 flex-column">
+
+        <div class="pb-3">
+
+            <p class="text-primary fs-2 fw-bold mb-0">
+                COMPROBANTES DE PAGO
+            </p>
+
+            <p class="fs-5 text-secondary">
+                Historial de cobros de tu membresía y compras en tienda
+            </p>
+
+        </div>
+
+
+        <!-- MENSAJES -->
+
+        <div th:if="${error}" class="alert alert-danger" th:text="${error}">
+        </div>
+
+        <div th:if="${exito}" class="alert alert-success" th:text="${exito}">
+        </div>
+
+
+        <!-- FILTROS -->
+
+        <div class="pb-5">
+
+            <form action="#" method="get">
+
+                <div class="row justify-content-between">
+
+                    <div class="col-5">
+
+                        <div class="d-flex gap-2">
+
+                            <input type="search" class="form-control" placeholder="Buscar comprobante">
+
+                            <button class="btn btn-outline-primary text-nowrap" type="submit">
+
+                                Buscar
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-6 d-flex gap-2">
+
+                        <select class="form-select">
+
+                            <option>Todo el periodo</option>
+                            <option>Este mes</option>
+                            <option>Mes anterior</option>
+                            <option>Últimos 6 meses</option>
+                            <option>Este año</option>
+
+                        </select>
+
+
+                        <select class="form-select">
+
+                            <option>Todos los tipos</option>
+                            <option>Boletas de planes</option>
+                            <option>Boletas de productos</option>
+                            <option>Reembolsos</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <!-- SIN COMPROBANTES -->
+
+        <div th:if="${#lists.isEmpty(boletas)}" class="alert alert-info">
+
+            No tienes comprobantes de pago registrados.
+
+        </div>
+
+
+        <!-- TABLA -->
+
+        <div th:unless="${#lists.isEmpty(boletas)}">
+
+            <div class="table-responsive">
+
+                <table class="table align-middle">
+
+                    <thead>
+
+                    <tr>
+
+                        <th scope="col">
+                            Comprobante
+                        </th>
+
+                        <th scope="col">
+                            Fecha
+                        </th>
+
+                        <th scope="col">
+                            Método
+                        </th>
+
+                        <th scope="col">
+                            Monto
+                        </th>
+
+                        <th scope="col">
+                            Estado
+                        </th>
+
+                        <th scope="col">
+                            Opciones
+                        </th>
+
+                    </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                    <tr th:each="boleta : ${boletas}">
+
+                        <!-- COMPROBANTE -->
+
+                        <td scope="row">
+
+                            <p class="mb-0 fw-bold text-secondary" th:text="'Boleta ' + ${boleta.numBoleta}">
+
+                                Boleta B001
+
+                            </p>
+
+                            <span>
+                                        Comprobante de pago
+                                    </span>
+
+                        </td>
+
+
+                        <!-- FECHA -->
+
+                        <td>
+
+                                    <span th:text="${#temporals.format(boleta.fechaEmision, 'dd/MM/yyyy')}">
+
+                                        18/08/2026
+
+                                    </span>
+
+                        </td>
+
+
+                        <!-- MÉTODO -->
+
+                        <td>
+
+                                    <span th:if="${boleta.compra.tarjeta != null}"
+                                          th:text="${boleta.compra.tarjeta.tipotarjeta}">
+
+                                        Visa
+
+                                    </span>
+
+                            <span th:unless="${boleta.compra.tarjeta != null}">
+
+                                        No registrado
+
+                                    </span>
+
+                        </td>
+
+
+                        <!-- MONTO -->
+
+                        <td>
+
+                                    <span>
+
+                                        S/
+
+                                    </span>
+
+                            <span th:text="${#numbers.formatDecimal(boleta.total, 1, 2)}">
+
+                                        180.00
+
+                                    </span>
+
+                        </td>
+
+
+                        <!-- ESTADO -->
+
+                        <td>
+
+                                    <span class="badge bg-primary">
+
+                                        Pagado
+
+                                    </span>
+
+                        </td>
+
+
+                        <!-- OPCIONES -->
+
+                        <td>
+
+                            <!-- VER COMPROBANTE -->
+
+                            <a class="btn btn-sm btn-link text-secondary p-1" title="Ver detalle"
+                               th:href="@{/client/historialcomprobantes/comprobante(numBoleta=${boleta.numBoleta})}">
+
+                                <i class="bi bi-eye fs-5"></i>
+
+                            </a>
+
+
+                            <!-- MÁS OPCIONES -->
+
+                            <button class="btn btn-sm btn-link text-secondary p-1" title="Más opciones"
+                                    type="button">
+
+                                <i class="bi bi-three-dots-vertical fs-5"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<div th:replace="~{fragments_cliente :: footer}"></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+
+    <header class="sticky-top">
+        <div class=" bg-body shadow-sm">
+            <div th:replace="~{fragments/fragment_navbar :: navbar}"></div>
+        </div>
+    </header>
+
+    <main>
+        <!-- PAGINA 1 -->
+        <div class="">
+        <div class="container d-flex flex-column justify-content-start flex-grow-1 min-vh-100 mt-5">
+        <p class="fs-2 text-danger fw-bold mb-0">Crear usuario</p>
+        <p class="text-secondary fs-5">Todos los datos fueron guardados correctamente</p>
+
+        <div class="row">
+        <div class="col">
+        <div class="card text-secondary py-3 border shadow-sm p-2">
+        <div class="card-body">
+        <h5 class="text-danger fw-bold">Datos personales</h5>
+        <p>Información básica del socio</p>
+
+        <form id="formCliente" th:action="@{/admin/Registrar_clienteP1.html}" th:object="${registro}" method="post" class="form-group">
+        <div class="alert alert-danger" th:if="${error}" th:text="${error}"></div>
+        <div class="row g-3">
+        <div class="col-6">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control" placeholder="Juan Mike" th:field="*{nombre}" required>
+        </div>
+
+        <div class="col-6">
+        <label for="" class="form-label">Apellidos</label>
+        <input type="text" class="form-control" placeholder="Quispe Flowers" th:field="*{apellidos}" required>
+        </div>
+
+        <div class="col-6">
+        <label for="" class="form-label">Correo eléctronico</label>
+        <input type="email" class="form-control" placeholder="QFlowers@gmail.com" th:field="*{email}" required>
+        </div>
+
+        <div class="col-2">
+        <label for="" class="form-label">Teléfono</label>
+        <input type="tel" class="form-control" placeholder="111 111 111" th:field="*{telefono}" required>
+        </div>
+
+        <div class="col-2">
+        <label for="" class="form-label">Tipo Doc.</label>
+        <select class="form-select" th:field="*{tipoDocumento}">
+        <option value="DNI">DNI</option>
+        <option value="CARNET_EXTRANJERIA">CE</option>
+        </select>
+        </div>
+
+        <div class="col-2">
+        <label for="" class="form-label">Documentación</label>
+        <input type="text" class="form-control" placeholder="11111111" th:field="*{numDocumento}" required>
+        </div>
+
+        <div class="col-3">
+        <label for="" class="form-label">Sede</label>
+        <select class="form-select" th:field="*{sede}">
+        <option value="San Isidro">San Isidro</option>
+        <option value="Comas">Comas</option>
+        <option value="Los Olivos">Los Olivos</option>
+        <option value="Ate">Ate</option>
+        </select>
+        </div>
+
+        <div class="col-3">
+        <label for="" class="form-label">Contacto de emergencia</label>
+        <input type="tel" class="form-control" placeholder="11111111" th:field="*{contactoEmergencia}" required>
+        </div>
+
+        </div>
+        </form>
+
+                                
+        </div>
+        </div>
+                        
+
+        </div>
+
+        <div class="col-4 my-auto flex-column justify-content-center d-flex ">
+        <div class="d-flex gap-3 align-items-center ms-5">
+        <div class="rounded-circle bg-danger justify-content-center align-items-center text-center d-flex text-white fw-bold" style="height: 40px; width: 40px;">
+                                
+        </div>
+        <span class="text-danger fs-5 fw-bold">Completar datos del usuario</span>
+        </div>
+                        
+        <div class="d-flex gap-3 align-items-center mt-4 ms-5">
+        <div class="rounded-circle border border-danger justify-content-center align-items-center d-flex text-secondary fw-bold" style="height: 40px; width: 40px;">
+                                
+        </div>
+        <span class="text-secondary fs-5">Seleccionar plan</span>
+        </div>
+
+        <div class="d-flex gap-3 align-items-center mt-4 ms-5">
+        <div class="rounded-circle border border-danger justify-content-center align-items-center  d-flex text-secondary fw-bold" style="height: 40px; width: 40px;">
+                                
+        </div>
+        <span class="text-secondary fs-5 ">Completar compra</span>
+        </div>
+
+        <div class="d-flex gap-3 align-items-center mt-4 ms-5">
+        <div class="rounded-circle border border-danger  justify-content-center align-items-center  d-flex text-secondary fw-bold" style="height: 40px; width: 40px;">
+                                
+        </div>
+        <span class="text-secondary fs-5">¡Listo! Usuario registrado</span>
+        </div>
+        </div>
+
+        </div>
+
+        <div class="mt-4">
+        <button class="btn btn-outline-danger" type="submit" form="formCliente">Continuar</button>
+        <button class="btn btn-outline-danger" onclick="window.location.href='/admin/Contabilidad.html'">Cancelar</button>
+        </div>
+        </div>
+
+        
+        </div>
+
+
+    </main>
+
+    <div th:replace="~{fragments/fragment_footer :: footer}"></div>
+    
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

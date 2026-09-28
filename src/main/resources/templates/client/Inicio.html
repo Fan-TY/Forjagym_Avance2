@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/styles.css">
+    <title>FORJAGYM</title>
+</head>
+
+<body>
+<div th:replace="~{fragments_cliente :: header}"></div>
+<main>
+    <section class="hero-inicio">
+        <img src="../img/banner.jpg" alt="Imagen de un gimnasio" class="hero-imagen">
+        <div class="hero-sombra"></div>
+        <div class="container text-center hero-contenido">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h1>Forja tu mejor versión.</h1>
+                    <p class="mx-auto">Entrenamientos personalizados, nutrición a medida y resultados reales.
+                        Únete a la comunidad que ya está transformando su cuerpo y mente en ForjaGYM.</p>
+                    <div class="d-flex gap-3 mt-4 flex-wrap justify-content-center">
+                        <a th:href="@{/client/planes}" class="btn btn-hero-primario">Ver planes</a>
+                        <a th:href="@{/client/contacto}" class="btn btn-hero-primario">
+                            Contáctanos
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-4 seccion-estadisticas">
+        <div class="container">
+            <div class="row text-center g-4">
+                <div class="col-6 col-md-3">
+                    <i class="bi bi-people-fill fs-2"></i>
+                    <p class="numero-estadistica mb-0">500+</p>
+                    <p class="etiqueta-estadistica mb-0">Miembros activos</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <i class="bi bi-calendar3 fs-2"></i>
+                    <p class="numero-estadistica mb-0">10</p>
+                    <p class="etiqueta-estadistica mb-0">Años de experiencia</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <i class="bi bi-person-badge-fill fs-2"></i>
+                    <p class="numero-estadistica mb-0">15</p>
+                    <p class="etiqueta-estadistica mb-0">Entrenadores certificados</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <i class="bi bi-activity fs-2"></i>
+                    <p class="numero-estadistica mb-0">20+</p>
+                    <p class="etiqueta-estadistica mb-0">Clases grupales por semana</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-white">
+        <div class="container">
+            <h2 class="text-center mb-5">¿Por qué elegir ForjaGYM?</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="tarjeta-beneficio">
+                        <div class="icono-beneficio">💪</div>
+                        <h3>Entrenadores expertos</h3>
+                        <p>Profesionales certificados que te acompañan paso a paso en cada meta.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="tarjeta-beneficio">
+                        <div class="icono-beneficio">🥗</div>
+                        <h3>Nutrición personalizada</h3>
+                        <p>Planes de alimentación diseñados para tus objetivos y estilo de vida.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="tarjeta-beneficio">
+                        <div class="icono-beneficio">📈</div>
+                        <h3>Resultados medibles</h3>
+                        <p>Seguimiento mensual con métricas claras y ajustes continuos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="planes" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Nuestros planes</h2>
+
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4">
+                    <div class="tarjeta-plan">
+                        <h3>Plan Básico</h3>
+                        <p class="descripcion-plan">Ideal si recién empiezas.</p>
+                        <p class="precio-plan">S/ 80<span>/mes</span></p>
+                        <ul class="lista-plan">
+                            <li><i class="bi bi-check-lg"></i> Acceso a la sala de pesas</li>
+                            <li><i class="bi bi-check-lg"></i> Acceso a zona de cardio</li>
+                            <li><i class="bi bi-check-lg"></i> Evaluación física inicial</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="tarjeta-plan tarjeta-plan-destacada">
+                        <span class="badge-popular">Más popular</span>
+                        <h3>Funcional grupal</h3>
+                        <p class="descripcion-plan">Entrena en equipo con guía profesional.</p>
+                        <p class="precio-plan">S/ 120<span>/mes</span></p>
+                        <ul class="lista-plan">
+                            <li><i class="bi bi-check-lg"></i> Clases 3 veces por semana</li>
+                            <li><i class="bi bi-check-lg"></i> Clases grupales de 1 hora</li>
+                            <li><i class="bi bi-check-lg"></i> Entrenamiento funcional guiado</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="tarjeta-plan">
+                        <h3>Fuerza Total</h3>
+                        <p class="descripcion-plan">Acompañamiento personalizado para resultados serios.</p>
+                        <p class="precio-plan">S/ 180<span>/mes</span></p>
+                        <ul class="lista-plan">
+                            <li><i class="bi bi-check-lg"></i> Acceso ilimitado a zonas y maquinarias</li>
+                            <li><i class="bi bi-check-lg"></i> Acompañamiento de un coach personalizado</li>
+                            <li><i class="bi bi-check-lg"></i> Evaluación gratuita</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-white">
+        <div class="container">
+            <h2 class="text-center mb-5">Lo que dicen nuestros miembros</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="tarjeta-testimonio">
+                        <i class="bi bi-quote fs-2" style="color: var(--color-celesteClaro);"></i>
+                        <p>Gracias a ForjaGYM bajé 8kg en 3 meses. Los entrenadores me guiaron en cada paso.</p>
+                        <div class="avatar-iniciales">MG</div>
+                        <p class="nombre-testimonio mb-0">María G.</p>
+                        <p class="rol-testimonio mb-0">Miembro desde 2023</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="tarjeta-testimonio">
+                        <i class="bi bi-quote fs-2" style="color: var(--color-celesteClaro);"></i>
+                        <p>Los entrenadores realmente se preocupan por tus objetivos, no es solo un gimnasio más.
+                        </p>
+                        <div class="avatar-iniciales">CR</div>
+                        <p class="nombre-testimonio mb-0">Carlos R.</p>
+                        <p class="rol-testimonio mb-0">Miembro desde 2022</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="tarjeta-testimonio">
+                        <i class="bi bi-quote fs-2" style="color: var(--color-celesteClaro);"></i>
+                        <p>El plan de nutrición personalizado cambió por completo mi forma de comer.</p>
+                        <div class="avatar-iniciales">AP</div>
+                        <p class="nombre-testimonio mb-0">Ana P.</p>
+                        <p class="rol-testimonio mb-0">Miembro desde 2024</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 seccion-cta">
+        <div class="container">
+            <div class="caja-cta text-center bg-white rounded-4 p-5">
+                <h2>¿Listo para comenzar?</h2>
+                <p>Escríbenos y te ayudamos a elegir el plan ideal para empezar hoy mismo tu transformación.</p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a th:href="@{/client/contacto}" class="btn btn-hero-primario">Contáctanos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<div th:replace="~{fragments_cliente :: footer}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <link rel="shortcut icon" th:href="@{/img/favicon.png}" type="image/x-icon">
+
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+
+    <title>Mi perfil - FORJAGYM</title>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div th:replace="~{fragments_cliente :: header}"></div>
+
+
+<main>
+
+    <div class="container d-flex justify-content-center flex-grow-1 flex-column">
+
+        <!-- TÍTULO -->
+        <div>
+            <p class="mb-0 mt-4 fs-2 fw-bold text-primary">
+                MI PERFIL
+            </p>
+
+            <p class="fs-5 text-secondary">
+                Gestiona tu cuenta, revisa tu membresía y mantén tu información actualizada desde este lugar.
+            </p>
+        </div>
+
+
+        <!-- RESUMEN DEL CLIENTE -->
+        <div class="card border-primary border-3 rounded-4">
+
+            <div class="card-body d-flex align-items-center gap-3">
+
+                <div class="ms-1 rounded-circle bg-primary text-white
+                            d-flex align-items-center justify-content-center fs-4" style="height: 70px; width: 70px;">
+
+                        <span th:text="${cliente.nombre.substring(0,1) + cliente.apellidos.substring(0,1)}">
+                            CV
+                        </span>
+
+                </div>
+
+
+                <div>
+
+                    <h5 class="card-title text-primary" th:text="${cliente.nombre + ' ' + cliente.apellidos}">
+                        Carla Vega
+                    </h5>
+
+                    <div class="d-flex gap-3 mb-2">
+
+                        <p class="mb-0" th:text="${cliente.email}">
+                            Carla.Vega@gmail.com
+                        </p>
+
+                        <p class="mb-0">|</p>
+
+                        <p class="mb-0" th:text="${cliente.telefono}">
+                            +51 987 654 321
+                        </p>
+
+                    </div>
+
+                    <span class="badge bg-primary">
+                            Cliente
+                        </span>
+
+                    <span class="badge bg-primary"
+                          th:text="${cliente.sede != null ? cliente.sede : 'Sede no registrada'}">
+                            Sede San Isidro
+                        </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="row mt-3 mb-5">
+
+            <!-- DATOS PERSONALES -->
+            <div class="col">
+
+                <div class="card border-primary border-3 rounded-4 h-100">
+
+                    <div class="card-body">
+
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+
+                            <h5 class="card-title mb-0 text-primary">
+                                Datos Personales
+                            </h5>
+
+                        </div>
+
+
+                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+
+                            <label class="text-secondary mb-0">
+                                Nombre
+                            </label>
+
+                            <span class="fw-bold text-secondary"
+                                  th:text="${cliente.nombre + ' ' + cliente.apellidos}">
+                                    Carla Vega
+                                </span>
+
+                        </div>
+
+
+                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+
+                            <label class="text-secondary mb-0">
+                                Correo electrónico
+                            </label>
+
+                            <span class="fw-bold text-secondary" th:text="${cliente.email}">
+                                    Carla.Vega@gmail.com
+                                </span>
+
+                        </div>
+
+
+                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+
+                            <label class="text-secondary mb-0">
+                                Teléfono
+                            </label>
+
+                            <span class="fw-bold text-secondary" th:text="${cliente.telefono}">
+                                    +51 987 654 321
+                                </span>
+
+                        </div>
+
+
+                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+
+                            <label class="text-secondary mb-0">
+                                Fecha de nacimiento
+                            </label>
+
+                            <span class="fw-bold text-secondary"
+                                  th:text="${cliente.fechaNacimiento != null ? #temporals.format(cliente.fechaNacimiento, 'dd/MM/yyyy') : '-'}">
+                                    21/07/1998
+                                </span>
+
+                        </div>
+
+
+                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+
+                            <label class="text-secondary mb-0">
+                                Documento
+                            </label>
+
+                            <span class="fw-bold text-secondary"
+                                  th:text="${cliente.tipoDocumento + ' ' + cliente.numDocumento}">
+                                    DNI 74588823
+                                </span>
+
+                        </div>
+
+
+                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+
+                            <label class="text-secondary mb-0">
+                                Sede habitual
+                            </label>
+
+                            <span class="fw-bold text-secondary"
+                                  th:text="${cliente.sede != null ? cliente.sede : '-'}">
+                                    San Isidro, Lima
+                                </span>
+
+                        </div>
+
+
+                        <div class="d-flex justify-content-between align-items-center py-2">
+
+                            <label class="text-secondary mb-0">
+                                Contacto de emergencia
+                            </label>
+
+                            <span class="fw-bold text-secondary"
+                                  th:text="${cliente.contactoEmergencia != null ? cliente.contactoEmergencia : '-'}">
+                                    -
+                                </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COLUMNA DERECHA -->
+            <div class="col">
+
+                <div class="row">
+
+                    <!-- PLAN ACTUAL -->
+                    <div class="col-12 mb-3">
+
+                        <div class="card bg-primary rounded-4 border-0 text-white">
+
+                            <div class="card-body">
+
+                                <p class="mb-1">
+                                    PLAN ACTUAL
+                                </p>
+
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+
+                <span class="fs-5 fw-bold"
+                      th:text="${suscripcionActual != null ? suscripcionActual.suscripcion.nombre : 'Sin plan activo'}">
+                    Fuerza Total
+                </span>
+
+                                    <span th:if="${suscripcionActual != null}"
+                                          class="badge bg-primary-subtle text-primary ms-3"
+                                          th:text="${suscripcionActual.estadosuscliente}">
+                    ACTIVA
+                </span>
+
+                                    <span th:if="${suscripcionActual == null}"
+                                          class="badge bg-secondary">
+                    Sin plan
+                </span>
+
+                                </div>
+
+
+                                <div class="container bg-white bg-opacity-25 rounded-3 p-3">
+
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+
+                    <span class="fw-bold">
+                        Próxima renovación
+                    </span>
+
+                                        <span th:if="${suscripcionActual != null}"
+                                              th:text="${#temporals.format(suscripcionActual.fechaFin, 'dd/MM/yyyy')}">
+                    </span>
+
+                                        <span th:if="${suscripcionActual == null}">
+                        -
+                    </span>
+
+                                    </div>
+
+                                    <span th:if="${suscripcionActual != null}"
+                                          th:text="${'Tu plan vence el ' + #temporals.format(suscripcionActual.fechaFin, 'dd/MM/yyyy')}">
+                </span>
+
+                                    <span th:if="${suscripcionActual == null}">
+                    No tienes un plan activo.
+                </span>
+
+                                </div>
+
+
+                                <!-- BOTONES DEL PLAN -->
+                                <div class="d-flex gap-3 pt-3">
+
+                                    <a th:href="@{/client/planes}"
+                                       class="btn border border-white text-white">
+                                        Cambiar de Plan
+                                    </a>
+
+                                    <form th:if="${suscripcionActual != null}"
+                                          th:action="@{/client/perfil/cancelar-plan}"
+                                          method="post">
+
+                                        <button type="submit"
+                                                class="btn btn-outline-light">
+                                            Cancelar Plan
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- CUENTA GENERAL -->
+                    <div class="col-12">
+
+                        <div class="card pb-0 bg-primary-subtle rounded-4 border-0">
+
+                            <div class="card-body text-primary">
+
+                                <div class="d-flex justify-content-between align-items-center mb-0">
+
+                                    <h5 class="text-primary fw-bold">
+                                        Cuenta general
+                                    </h5>
+
+                                    <button type="button"
+                                            class="btn btn-link text-primary text-decoration-none p-0">
+                                        Configurar
+                                    </button>
+
+                                </div>
+
+
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>Contraseña</span>
+                                </div>
+
+
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>Tarjetas registradas</span>
+                                </div>
+
+
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>Pago automático</span>
+                                    <span>No configurado</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- FOOTER -->
+<div th:replace="~{fragments_cliente :: footer}"></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

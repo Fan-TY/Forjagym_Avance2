@@ -1,0 +1,416 @@
+:root {
+    --color-azul: #1239ac;
+    --color-celeste: #4b94fd;
+    --color-celesteClaro: #B9CAFA;
+    --color-gris: #74797c;
+    --color-texto: #1a1a1a;
+    --color-blanco: #ffffff;
+    --color-azulOscuro: #10339b;
+    --color-grisClaro: #f5f6fa;
+
+    --fuente-texto: 'Open Sans', sans-serif;
+    --fuente-titulo: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--fuente-texto);
+    font-size: 15px;
+    color: var(--color-gris);
+}
+
+h1, h2, h3 {
+    font-family: var(--fuente-titulo);
+    color: var(--color-azul);
+    font-weight: 700;
+}
+
+.subtitulo-seccion {
+    color: var(--color-gris);
+    font-size: 1.1rem;
+}
+
+
+.navbar-nav .nav-link {
+    color: var(--color-texto);
+    font-weight: 600;
+}
+
+.navbar .nav-link:hover {
+    color: var(--color-azul);
+}
+
+.navbar .nav-link.active {
+    color: var(--color-azul);
+    border-bottom: 2px solid var(--color-azul);
+}
+
+.marca-navbar {
+    color: var(--color-azul);
+}
+
+.marca-navbar span {
+    font-family: var(--fuente-titulo);
+}
+
+
+.btn-hero-primario {
+    background-color: var(--color-blanco);
+    color: var(--color-azul);
+    font-weight: 600;
+    padding: 10px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.btn-hero-primario:hover {
+    background-color: var(--color-azul);
+    color: var(--color-blanco);
+}
+
+.hero-inicio {
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0;
+    color: var(--color-blanco);
+}
+
+.hero-inicio h1 {
+    color: var(--color-blanco);
+    margin-bottom: 1rem;
+}
+
+.hero-inicio p {
+    color: var(--color-celesteClaro);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-imagen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.hero-sombra {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+}
+
+.hero-contenido {
+    position: relative;
+    z-index: 3;
+}
+
+
+.seccion-estadisticas {
+    background-color: var(--color-azul);
+    color: var(--color-blanco);
+}
+
+.numero-estadistica {
+    font-family: var(--fuente-titulo);
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.etiqueta-estadistica {
+    color: var(--color-celesteClaro);
+    font-size: 0.9rem;
+}
+
+
+.tarjeta-beneficio {
+    background-color: var(--color-blanco);
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    height: 100%;
+}
+
+.icono-beneficio {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.tarjeta-beneficio h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.tarjeta-beneficio p {
+    color: var(--color-gris);
+}
+
+
+.tarjeta-plan {
+    background-color: var(--color-blanco);
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 40px 30px;
+    height: 100%;
+    text-align: center;
+    position: relative;
+}
+
+.tarjeta-plan-destacada {
+    border: 2px solid var(--color-azul);
+}
+
+.badge-popular {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-azul);
+    color: var(--color-blanco);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 5px 16px;
+    border-radius: 20px;
+}
+
+.descripcion-plan {
+    color: var(--color-gris);
+    margin-bottom: 1rem;
+}
+
+.precio-plan {
+    font-family: var(--fuente-titulo);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--color-azul);
+    margin-bottom: 1.5rem;
+}
+
+.precio-plan span {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-gris);
+}
+
+.lista-plan {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.lista-plan li {
+    padding: 8px 0;
+    color: var(--color-texto);
+}
+
+.lista-plan li i {
+    color: var(--color-azul);
+    margin-right: 10px;
+}
+
+
+.tarjeta-testimonio {
+    background-color: var(--color-blanco);
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    height: 100%;
+}
+
+.avatar-iniciales {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--color-azul);
+    color: var(--color-blanco);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px auto;
+}
+
+.nombre-testimonio {
+    font-weight: 700;
+    color: var(--color-texto);
+}
+
+.rol-testimonio {
+    color: var(--color-gris);
+    font-size: 0.85rem;
+}
+
+
+.seccion-cta {
+    background-color: var(--color-celesteClaro);
+}
+
+.caja-cta p {
+    color: var(--color-gris);
+    margin-bottom: 1.5rem;
+}
+
+
+.badge-ayuda {
+    background-color: var(--color-celesteClaro);
+    color: var(--color-azul);
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 6px 16px;
+    border-radius: 20px;
+}
+
+.mapa-contacto {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.info-contacto-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.info-contacto-icono {
+    background-color: var(--color-grisClaro);
+    color: var(--color-azul);
+    font-size: 22px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-contacto-item h4 {
+    font-size: 17px;
+    margin-bottom: 4px;
+}
+
+.info-contacto-item p {
+    margin-bottom: 0;
+    color: var(--color-gris);
+}
+
+.caja-formulario {
+    border: 1px solid var(--color-azul);
+}
+
+.formulario-contacto label {
+    color: var(--color-texto);
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: inline-block;
+}
+
+.casilla-privacidad {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.casilla-privacidad label {
+    color: var(--color-gris);
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.input-contacto {
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    padding: 10px 14px;
+    background-color: var(--color-blanco);
+    width: 100%;
+}
+
+textarea.input-contacto {
+    resize: none;
+}
+
+.input-contacto:focus {
+    border-color: var(--color-azul);
+    box-shadow: 0 0 0 3px rgba(18, 57, 172, 0.25);
+    outline: none;
+}
+
+.btn-enviar {
+    background-color: var(--color-azul);
+    color: var(--color-blanco);
+    font-weight: 600;
+    padding: 12px 32px;
+    border-radius: 6px;
+    border: none;
+}
+
+.btn-enviar:hover {
+    background-color: var(--color-azulOscuro);
+}
+
+
+.seccion-horario {
+    background-color: var(--color-azul);
+}
+
+.fila-horario {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    height: 100%;
+}
+
+.fila-horario-dia {
+    color: var(--color-blanco);
+    font-weight: 600;
+}
+
+.fila-horario-hora {
+    color: var(--color-celesteClaro);
+}
+
+
+.footer {
+    background-color: var(--color-azulOscuro);
+    color: var(--color-blanco);
+}
+
+.footer h5 {
+    color: var(--color-blanco);
+}
+
+.footer hr {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.footer-texto {
+    color: var(--color-blanco);
+}
+
+.footer-icono {
+    color: var(--color-blanco);
+}
+
+.footer a {
+    color: var(--color-blanco);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: var(--color-celesteClaro);
+}
+
+.footer .marca-navbar i {
+    color: var(--color-celeste);
+}

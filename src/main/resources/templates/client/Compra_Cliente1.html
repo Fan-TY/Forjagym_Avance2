@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <link rel="shortcut icon" th:href="@{/img/favicon.png}" type="image/x-icon">
+
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+
+    <title>FORJAGYM - Carrito</title>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div th:replace="~{fragments_cliente :: header}"></div>
+
+
+<main>
+
+    <div class="container d-flex pt-5 flex-grow-1 min-vh-100 flex-column">
+
+        <p class="fs-2 text-primary fw-bold mb-0">
+            TU CARRITO
+        </p>
+
+        <p class="text-secondary fs-5 mb-0">
+            Completa tu compra para comenzar a entrenar sin límites
+        </p>
+
+
+        <!-- MENSAJES -->
+
+        <div class="alert alert-success mt-3 mb-0" th:if="${exito}" th:text="${exito}">
+        </div>
+
+        <div class="alert alert-danger mt-3 mb-0" th:if="${error}" th:text="${error}">
+        </div>
+
+
+        <div class="row mt-4">
+
+
+            <!-- CARRITO -->
+
+            <div class="col-7">
+
+                <div class="card">
+
+                    <div class="card-header justify-content-between d-flex">
+
+                            <span class="text-secondary fw-bold">
+                                Artículos
+                            </span>
+
+                        <span class="text-secondary"
+                              th:text="${carritoVacio ? 0 : #lists.size(compra.articulos)} + ' en total'">
+                                1 en total
+                            </span>
+
+                    </div>
+
+
+                    <!-- ARTÍCULOS -->
+
+                    <th:block th:unless="${carritoVacio}">
+
+                        <div class="card-body d-flex justify-content-between align-items-center border-bottom"
+                             th:each="item : ${compra.articulos}">
+
+                            <div>
+
+                                <p class="mb-0 text-primary fw-bold fs-5"
+                                   th:text="${item.suscripcion instanceof T(com.forjagym.springboot_forjagym.model.SUSCRIPCIONES.PlanEntrenamiento)} ? 'PLAN DE ENTRENAMIENTO': 'MEMBRESÍA'">
+                                    MEMBRESÍA
+                                </p>
+
+                                <p class="mb-0 text-secondary fw-bold" th:text="${item.suscripcion.nombre}">
+                                    Plan Fuerza Total
+                                </p>
+
+                                <span class="text-secondary">
+
+                                        se activa hoy · renueva el
+
+                                        <span th:text="${#temporals.format(item.fechaFin, 'dd/MM/yyyy')}">
+                                            18/10/2026
+                                        </span>
+
+                                        <span class="badge bg-primary ms-2">
+                                            Pago recurrente mensual
+                                        </span>
+
+                                    </span>
+
+                            </div>
+
+
+                            <!-- PRECIO + ELIMINAR -->
+
+                            <div class="text-center">
+
+                                <p class="mb-0 fs-5 fw-bold text-secondary"
+                                   th:text="'S/ ' + ${#numbers.formatDecimal(item.suscripcion.precio, 1, 'COMMA', 2, 'POINT')}">
+                                    S/ 180.00
+                                </p>
+
+
+                                <form th:action="@{/client/pedido/eliminar}" method="post">
+
+                                    <input type="hidden" name="idSusCli" th:value="${item.idSusCli}">
+
+                                    <button type="submit" class="btn btn-link text-decoration-none p-0 text-danger">
+                                        Eliminar
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </th:block>
+
+
+                    <!-- CARRITO VACÍO -->
+
+                    <div class="card-body text-center text-secondary" th:if="${carritoVacio}">
+
+                        Tu carrito está vacío.
+                        Agrega un plan o una membresía para continuar.
+
+                    </div>
+
+
+                    <!-- AGREGAR -->
+
+                    <div class="card-body border-top d-flex gap-3">
+
+                        <a th:href="@{/client/planes}" class="btn btn-link text-decoration-none p-0">
+                            + Añadir plan
+                        </a>
+
+                        <a th:href="@{/client/membresiasproductos}" class="btn btn-link text-decoration-none p-0">
+                            + Añadir membresía
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOTONES -->
+
+                <div class="mt-4 d-flex gap-2">
+
+                    <form th:action="@{/client/pedido/confirmar}" method="post">
+
+                        <button class="btn btn-outline-primary" type="submit" th:disabled="${carritoVacio}">
+                            Continuar el pago
+                        </button>
+
+                    </form>
+
+
+                    <a th:href="@{/client/inicio}" class="btn btn-outline-primary">
+                        Cancelar
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESUMEN -->
+
+            <div class="col-5">
+
+                <div class="card">
+
+                    <div class="card-header">
+                            <span class="fw-bold">
+                                Resumen de compra
+                            </span>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div th:if="${carritoVacio}" class="text-secondary">
+                            No hay artículos en el carrito.
+                        </div>
+
+                        <div th:unless="${carritoVacio}">
+
+                            <div th:each="item : ${compra.articulos}" class="d-flex justify-content-between mb-2">
+
+                                    <span th:text="${item.suscripcion.nombre}">
+                                        Plan Fuerza Total
+                                    </span>
+
+                                <span
+                                        th:text="'S/ ' + ${#numbers.formatDecimal(item.suscripcion.precio, 1, 'COMMA', 2, 'POINT')}">
+                                        S/ 180.00
+                                    </span>
+
+                            </div>
+
+                            <hr>
+
+                            <div class="d-flex justify-content-between fw-bold">
+
+                                    <span>
+                                        Total
+                                    </span>
+
+                                <span
+                                        th:text="'S/ ' + ${#numbers.formatDecimal(compra.total, 1, 'COMMA', 2, 'POINT')}">
+                                        S/ 180.00
+                                    </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- FOOTER -->
+<div th:replace="~{fragments_cliente :: footer}"></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+
+    <header class="sticky-top">
+        <div class=" bg-body shadow-sm">
+            <div th:replace="~{fragments/fragment_navbar :: navbar}"></div>
+        </div>
+    </header>
+
+    <main>
+        <!-- PAGINA 1 -->
+        <div class="">
+            <div class="container d-flex flex-column justify-content-start flex-grow-1 min-vh-100 mt-5">
+
+                <div class="d-flex justify-content-between">
+                    <p class="mb-0 fs-2 text-danger fw-bold">PANEL DE NOTIFICACIONES</p>
+                    <form action="">
+                        <select name="" id="" class="form-select">
+                            <option value="">Nueva suscripción</option>
+                            <option value="">Actualización de suscripcón</option>
+                            <option value="">Recordatorios</option>
+                        </select>
+                    </form>
+                </div>
+                <p class="mb-0 fs-5 text-secondary mb-4">Gestione todas las notificaciones</p>
+
+                    <table class="table table-striped shadow-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col">Notificación</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Envío</th>
+                                <th scope="col">Destino</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Operación</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="">
+                        <tr th:each="noti : ${notificaciones}">
+                            <td scope="row">
+                                <p class="mb-0 fw-bold text-secondary" th:text="${noti?.titulo}"></p>
+                                <p class="mb-0 text-secondary" th:text="${noti?.descripcion}"></p>
+                            </td>
+                            <td>
+                                <span th:text="${noti?.tiponoti}"></span>
+                            </td>
+                            <td th:text="${noti?.fecha_envio}"></td>
+                            <td th:text="${noti?.tipopublico}"></td>
+                            <td>
+                                <span th:if="${noti?.estadonoti.name() == 'BORRADOR'}"
+                                      class="badge bg-warning text-dark"
+                                      th:text="${noti?.estadonoti}">Borrador</span>
+
+                                <span th:unless="${noti?.estadonoti?.name() == 'BORRADOR'}"
+                                      class="badge bg-success text-white"
+                                      th:text="${noti?.estadonoti}">Enviado</span>
+                            </td>
+                            <td>
+                                <a th:if="${noti.estadonoti.name() == 'BORRADOR'}"
+                                   th:href="@{/admin/Noti_editar.html}"
+                                   class="nav-link text-secondary">Editar</a>
+
+                                <a th:unless="${noti.estadonoti.name() == 'BORRADOR'}"
+                                   href=""
+                                   class="nav-link disabled">Editar</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        
+        </div>
+
+
+    </main>
+
+    <div th:replace="~{fragments/fragment_footer :: footer}"></div>
+    
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

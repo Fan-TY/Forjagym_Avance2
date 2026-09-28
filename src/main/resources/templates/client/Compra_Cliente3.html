@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <link rel="shortcut icon" th:href="@{/img/favicon.png}" type="image/x-icon">
+
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+
+    <title>FORJAGYM - Confirmación</title>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div th:replace="~{fragments_cliente :: header}"></div>
+
+
+<main>
+
+    <div class="container d-flex flex-grow-1 min-vh-100 flex-column
+                    justify-content-center align-items-center">
+
+        <!-- MENSAJE DE CONFIRMACIÓN -->
+        <i class="bi bi-check-circle-fill fs-2 text-primary mt-4"></i>
+
+        <div class="text-primary text-center">
+            <p class="fw-bold mb-0 fs-2">
+                ¡Todo listo,
+                <span th:text="${compra.cliente.nombre}">Carla</span>!
+            </p>
+
+            <p class="fs-5 text-secondary mb-0">
+                Bienvenida a la comunidad FORJAGYM.
+                Puedes ver tus comprobantes desde tu perfil.
+            </p>
+        </div>
+
+
+        <!-- PASOS -->
+        <div class="mt-4 mb-4 d-flex">
+
+            <div class="d-flex gap-3 align-items-center">
+                <div class="rounded-circle bg-primary justify-content-center
+                                align-items-center text-center d-flex text-white fw-bold"
+                     style="height: 40px; width: 40px;">
+                    1
+                </div>
+
+                <span class="text-primary fs-5">
+                        Seleccionar productos
+                    </span>
+            </div>
+
+
+            <div class="d-flex gap-3 align-items-center ms-4">
+                <div class="rounded-circle bg-primary justify-content-center
+                                align-items-center text-center d-flex text-white fw-bold"
+                     style="height: 40px; width: 40px;">
+                    2
+                </div>
+
+                <span class="text-primary fs-5">
+                        Escoger método de pago
+                    </span>
+            </div>
+
+
+            <div class="d-flex gap-3 align-items-center ms-4">
+                <div class="rounded-circle bg-primary justify-content-center
+                                align-items-center text-center d-flex text-white fw-bold"
+                     style="height: 40px; width: 40px;">
+                    3
+                </div>
+
+                <span class="text-primary fs-5 fw-bold">
+                        ¡Listo! Pedido completo
+                    </span>
+            </div>
+
+        </div>
+
+
+        <!-- MEMBRESÍA -->
+        <div class="card w-50">
+
+            <div class="card-header">
+                <p class="fw-bold text-secondary mb-0">
+                    Membresía
+                </p>
+            </div>
+
+            <div class="card-body text-white">
+
+                <div class="bg-primary px-3 py-2 rounded-4">
+
+                    <div class="d-flex align-items-center justify-content-between">
+
+                        <div>
+
+                            <!-- Productos/planes comprados -->
+                            <div th:each="articulo : ${compra.articulos}">
+
+                                <p class="mb-0 fw-bold" th:text="${articulo.suscripcion.nombre}">
+                                    Plan Fuerza Total
+                                </p>
+
+                                <p class="mb-0" th:text="'Activado hoy, ' + ${#temporals.format(boleta.fechaEmision, 'dd')} + ' de ' +
+                                                ${#strings.toLowerCase(#temporals.format(boleta.fechaEmision, 'MMMM'))} + ' del ' +
+                                                ${#temporals.format(boleta.fechaEmision, 'yyyy')}">
+                                    Activado hoy
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <span class="badge bg-white text-primary">
+                                Activo
+                            </span>
+
+                    </div>
+
+
+                    <!-- PRÓXIMA RENOVACIÓN -->
+                    <div th:if="${!compra.articulos.isEmpty()}" class="justify-content-between d-flex mt-3 mb-1">
+
+                            <span>
+                                Próxima Renovación
+                            </span>
+
+                        <span class="fw-bold" th:text="${#temporals.format(
+                                      compra.articulos.get(0).fechaFin,
+                                      'dd/MM/yyyy'
+                                  )}">
+                                18/10/2026
+                            </span>
+
+                    </div>
+
+
+                    <!-- MONTO RECURRENTE -->
+                    <div th:if="${!compra.articulos.isEmpty()}" class="justify-content-between d-flex">
+
+                            <span>
+                                Monto Recurrente
+                            </span>
+
+                        <span class="fw-bold" th:text="'S/ ' + ${#numbers.formatDecimal(
+                                      compra.articulos.get(0).suscripcion.precio,
+                                      1,
+                                      2
+                                  )}">
+                                S/ 180.00
+                            </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PAGO REALIZADO -->
+        <div class="card w-50 mt-4">
+
+            <div class="card-header">
+                <p class="fw-bold text-secondary mb-0">
+                    Pago realizado
+                </p>
+            </div>
+
+            <div class="card-body">
+
+                <!-- MÉTODO DE PAGO -->
+                <div class="d-flex justify-content-between pb-1 border-bottom">
+
+                        <span>
+                            Método de pago
+                        </span>
+
+                    <span th:if="${compra.tarjeta != null}" th:text="${compra.tarjeta.tipotarjeta + ' ****' +
+                                       #strings.substring(
+                                           compra.tarjeta.numTarjeta,
+                                           compra.tarjeta.numTarjeta.length() - 4
+                                       )}">
+                            Visa ****4821
+                        </span>
+
+                    <span th:unless="${compra.tarjeta != null}">
+                            No registrado
+                        </span>
+
+                </div>
+
+
+                <!-- TOTAL PAGADO -->
+                <div class="d-flex justify-content-between pb-1 border-bottom">
+
+                        <span>
+                            Total pagado hoy
+                        </span>
+
+                    <span th:text="'S/ ' + ${#numbers.formatDecimal(
+                                      boleta.total,
+                                      1,
+                                      2
+                                  )}">
+                            S/ 212.40
+                        </span>
+
+                </div>
+
+
+                <!-- COMPROBANTE -->
+                <div class="d-flex justify-content-between">
+
+                        <span>
+                            Comprobante emitido
+                        </span>
+
+                    <span th:text="'Boleta ' + ${boleta.numBoleta}">
+                            Boleta B1
+                        </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- VOLVER AL INICIO -->
+        <a class="btn btn-primary mt-4 mb-5" th:href="@{/client/inicio}">
+            Volver a Inicio
+        </a>
+
+    </div>
+
+</main>
+
+
+<!-- FOOTER -->
+<div th:replace="~{fragments_cliente :: footer}"></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+</script>
+
+</body>
+
+</html>

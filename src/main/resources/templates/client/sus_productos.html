@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <link rel="shortcut icon" th:href="@{/img/favicon.png}" type="image/x-icon">
+
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+
+    <title>Productos - FORJAGYM</title>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div th:replace="~{fragments_cliente :: header}"></div>
+
+
+<main>
+
+    <div class="container d-flex flex-column justify-content-center flex-grow-1 min-vh-100">
+
+        <!-- FILTROS -->
+        <div class="nav nav-pills gap-2 mb-5 mt-4">
+
+            <div class="nav-item">
+                <button class="nav-link active" type="button">
+                    Todos
+                </button>
+            </div>
+
+            <div class="nav-item">
+                <button class="nav-link" type="button">
+                    Nuevos
+                </button>
+            </div>
+
+            <div class="nav-item">
+                <button class="nav-link" type="button">
+                    Populares
+                </button>
+            </div>
+
+            <div class="nav-item">
+                <button class="nav-link" type="button">
+                    Tiempo limitado
+                </button>
+            </div>
+
+        </div>
+
+
+        <!-- TÍTULO -->
+
+        <p class="fw-bold text-primary fs-2 mb-0">
+            MEMBRESÍAS DE PRODUCTOS
+        </p>
+
+        <p class="fs-5 text-secondary">
+            Elige tu plan, recibe tus productos favoritos y aprovecha descuentos de socio.
+        </p>
+
+
+        <!-- MEMBRESÍAS -->
+
+        <div class="row mt-4 pb-4">
+
+            <div class="col-md-4 mb-4" th:each="membresia : ${membresias}">
+
+                <div class="card h-100">
+
+                    <div class="card-header text-center">
+
+                        <div class="d-flex justify-content-center">
+
+                            <p class="fs-3 text-primary fw-bold mb-0">
+                                S/
+                            </p>
+
+                            <p class="fs-1 text-primary fw-bold mb-0"
+                               th:text="${#numbers.formatDecimal(membresia.precio, 1, 'COMMA', 2, 'POINT')}">
+                                30.00
+                            </p>
+
+                            <p class="text-secondary pt-2 ms-1">
+                                Mensual
+                            </p>
+
+                        </div>
+
+                        <p class="fs-4 fw-bold text-primary mb-0" th:text="${membresia.nombre}">
+                            Socio Bronce
+                        </p>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+                        <p class="mb-0">
+                            Productos incluidos cada mes:
+                        </p>
+
+                        <ul>
+                            <li>Productos incluidos en la membresía</li>
+                            <li>Beneficios exclusivos para socios</li>
+                        </ul>
+
+
+                        <p class="mb-0">
+                            Beneficios permanentes:
+                        </p>
+
+                        <ul>
+                            <li>Descuentos en productos</li>
+                            <li>Acceso a promociones exclusivas</li>
+                        </ul>
+
+
+                        <!-- AGREGAR AL CARRITO -->
+
+                        <div class="d-flex justify-content-center">
+
+                            <form th:action="@{/client/pedido/agregar}" method="post">
+
+                                <input type="hidden"
+                                       name="idSuscripcion"
+                                       th:value="${membresia.id}">
+
+                                <button type="submit" class="btn btn-primary">
+                                    Agregar
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- FOOTER -->
+<div th:replace="~{fragments_cliente :: footer}"></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

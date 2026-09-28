@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+          crossorigin="anonymous">
+
+    <link rel="shortcut icon"
+          th:href="@{/img/favicon.png}"
+          type="image/x-icon">
+
+    <link rel="stylesheet"
+          th:href="@{/css/styles.css}">
+
+    <title>FORJAGYM - Notificaciones</title>
+</head>
+
+<body>
+
+<div th:replace="~{fragments_cliente :: header}"></div>
+
+<main>
+
+    <div class="container py-4 min-vh-100">
+
+        <p class="display-6 fw-bold text-primary mb-1">
+            NOTIFICACIONES
+        </p>
+
+        <p class="fs-5 text-secondary mb-4">
+            Revisa las novedades y avisos de FORJAGYM.
+        </p>
+
+        <!-- MENSAJES -->
+
+        <div th:if="${error}"
+             class="alert alert-danger"
+             th:text="${error}">
+        </div>
+
+        <div th:if="${exito}"
+             class="alert alert-success"
+             th:text="${exito}">
+        </div>
+
+
+        <!-- FILTROS -->
+
+        <form method="get" class="mb-4">
+
+            <div class="row g-2">
+
+                <div class="col-md-6">
+
+                    <input type="search"
+                           name="buscar"
+                           class="form-control"
+                           placeholder="Buscar notificación">
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <select name="tipo" class="form-select">
+
+                        <option value="TODOS">
+                            Todos los tipos
+                        </option>
+
+                        <option value="NUEVA_SUSCRIPCION">
+                            Nuevas suscripciones
+                        </option>
+
+                        <option value="ACTUALZIACION">
+                            Actualizaciones
+                        </option>
+
+                        <option value="RECORDATORIO">
+                            Recordatorios
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <button type="submit"
+                            class="btn btn-outline-primary w-100">
+                        Buscar
+                    </button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+
+        <!-- NOTIFICACIONES -->
+
+        <div class="py-2">
+
+            <div th:if="${#lists.isEmpty(notificaciones)}"
+                 class="alert alert-info">
+
+                No tienes notificaciones.
+
+            </div>
+
+
+            <div th:each="notificacion : ${notificaciones}"
+                 class="card mt-3">
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-start">
+
+                        <div>
+
+                            <!-- TÍTULO -->
+
+                            <div class="d-flex align-items-center gap-2">
+
+                                <i class="bi bi-bell-fill text-primary"></i>
+
+                                <h5 class="fw-bold mb-0"
+                                    th:text="${notificacion.noti.titulo}">
+                                    Título de notificación
+                                </h5>
+
+                                <!-- NO LEÍDA -->
+
+                                <span th:if="${notificacion.estadolectura.name() == 'SIN_LEER'}"
+                                      class="badge bg-primary">
+                                    Nueva
+                                </span>
+
+                            </div>
+
+
+                            <!-- TIPO -->
+
+                            <span class="badge bg-light text-primary border mt-2"
+                                  th:text="${notificacion.noti.tipopublico}">
+                                TODOS
+                            </span>
+
+                        </div>
+
+
+                        <!-- FECHA -->
+
+                        <small class="text-secondary"
+                               th:text="${#temporals.format(notificacion.noti.fecha_envio, 'dd/MM/yyyy')}">
+                            25/08/2026
+                        </small>
+
+                    </div>
+
+
+                    <!-- DESCRIPCIÓN -->
+
+                    <p class="text-secondary mt-3 mb-3"
+                       th:text="${notificacion.noti.descripcion}">
+                        Descripción de la notificación.
+                    </p>
+
+
+                    <!-- ESTADO -->
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <span th:if="${notificacion.estadolectura.name() == 'LEIDO'}"
+                              class="text-success">
+                            <i class="bi bi-check2"></i>
+                            Leída
+                        </span>
+
+                        <span th:if="${notificacion.estadolectura.name() == 'SIN_LEER'}"
+                              class="text-primary">
+                            <i class="bi bi-envelope"></i>
+                            Sin leer
+                        </span>
+
+
+                        <div class="d-flex gap-3">
+
+                            <!-- MARCAR LEÍDO -->
+
+                            <form th:if="${notificacion.estadolectura.name() == 'SIN_LEER'}"
+                                  th:action="@{/client/notificaciones/leido}"
+                                  method="post">
+
+                                <input type="hidden"
+                                       name="idNoti"
+                                       th:value="${notificacion.noti.idNoti}">
+
+                                <button type="submit"
+                                        class="btn btn-sm btn-outline-primary">
+
+                                    <i class="bi bi-check2"></i>
+                                    Marcar como leída
+
+                                </button>
+
+                            </form>
+
+
+                            <!-- OCULTAR -->
+
+                            <form th:action="@{/client/notificaciones/ocultar}"
+                                  method="post">
+
+                                <input type="hidden"
+                                       name="idNoti"
+                                       th:value="${notificacion.noti.idNoti}">
+
+                                <button type="submit"
+                                        class="btn btn-sm btn-outline-danger">
+
+                                    <i class="bi bi-trash"></i>
+                                    Ocultar
+
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<div th:replace="~{fragments_cliente :: footer}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
